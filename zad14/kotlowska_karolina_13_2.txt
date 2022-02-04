@@ -1,0 +1,42 @@
+---zad1
+SELECT product_name, customer_name, count(product_name), sum(sales)FROM sample
+GROUP BY product_name, customer_name
+HAVING count(product_name)>1
+
+UNION
+
+SELECT product_name, null, count(product_name), sum(sales)FROM sample
+GROUP BY product_name
+HAVING COUNT(product_name)>20
+
+UNION
+
+SELECT null, customer_name, COUNT(product_name), sum(sales)FROM sample
+GROUP BY customer_name
+HAVING COUNT(product_name)>30
+
+ORDER BY product_name, customer_name;
+
+
+
+--zad2
+with cte as (
+SELECT ship_mode as shipmode, region, SUM(shipping_cost) as shipcost FROM sample
+GROUP BY ship_mode, region
+)
+SELECT shipmode, region, row_number() over(ORDER BY shipcost DESC) as row_number, DENSE_RANK() over(ORDER BY shipcost DESC) as denserankbyshipcost, shipcost, SUM(shipcost) over(PARTITION BY region ORDER BY region) as shipcostbyregion
+FROM cte
+ORDER BY row_number;
+
+
+
+--zad3???
+SELECT * FROM crosstab(
+$$SELECT CONCAT(product_category,'-',product_sub_category)::text as category, province::text, SUM(Order_quantity)::numeric
+FROM sample GROUP BY province, product_category, product_sub_category
+ORDER BY 1, 2, 3;$$
+) as ct("category" text, "Alberta" numeric, "BritishColumbia" numeric, "Manitoba" numeric, "NewBrunswick" numeric, "Newfoundland" numeric, "NorthwestTerritories" numeric, "NovaScotia" numeric, "Nunavut" numeric, "Ontario" numeric, "PrinceEdwardIsland" numeric, "Quebec" numeric, "Saskachewan" numeric, "Yukon" numeric, "All" numeric);
+
+
+
+
