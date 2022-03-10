@@ -8,9 +8,9 @@
 #line 1 "zad1.pgc"
 #include <stdio.h>
 
-char * p_dbase = "u9miszczak@localhost:5432";	//"tcp:postgresql://localhost:5432/DB1_lab02";
-char * p_user = "u9miszczak";
-char * p_pass = "9miszczak";
+char * p_dbase = "u9kotlowska@localhost:5432";	//"tcp:postgresql://localhost:5432/DB1_lab02";
+char * p_user = "u9kotlowska";
+char * p_pass = "9kotlowska";
 
 /* exec sql begin declare section */
 	 
