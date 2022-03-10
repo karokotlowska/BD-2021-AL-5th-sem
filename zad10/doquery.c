@@ -5,9 +5,9 @@
 
 char * dbhost = "localhost";
 char * dbport = "5432";
-char * dbuser = "u9miszczak";
-char * dbpassword = "9miszczak";
-char * dbname = "u9miszczak";
+char * dbuser = "u9kotlowska";
+char * dbpassword = "9kotlowska";
+char * dbname = "u9kotlowska";
 
 
 void doSQL(PGconn *conn, char *command){
